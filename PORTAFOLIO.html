@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio de Proyectos</title>
+  <meta name="description" content="Portafolio de muestra de proyectos con enlaces a repositorios y PDFs." />
+
+  <!-- Bootstrap 5 CSS desde CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Bootstrap Icons desde CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --accent: #06b6d4;
+      --dark: #0f172a;
+      --light: #f8fafc;
+    }
+
+    * { font-family: 'Poppins', sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+      min-height: 100vh;
+      color: var(--dark);
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary) !important;
+      letter-spacing: -0.5px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 100px 0 60px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: #64748b;
+      max-width: 600px;
+      margin: 1rem auto 0;
+      font-size: 1.1rem;
+    }
+
+    /* Cards */
+    .project-card {
+      border: none;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(79, 70, 229, 0.18);
+    }
+
+    .project-icon {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-icon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 60%);
+    }
+
+    .icon-1 { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
+    .icon-2 { background: linear-gradient(135deg, #06b6d4, #0ea5e9); }
+    .icon-3 { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+    .icon-4 { background: linear-gradient(135deg, #10b981, #059669); }
+    .icon-5 { background: linear-gradient(135deg, #ec4899, #8b5cf6); }
+    .icon-6 { background: linear-gradient(135deg, #6366f1, #06b6d4); }
+
+    .project-card .card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .project-card .card-title {
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--dark);
+    }
+
+    .project-card .card-text {
+      color: #64748b;
+      font-size: 0.92rem;
+      flex: 1;
+    }
+
+    .badge-tech {
+      background: #eef2ff;
+      color: var(--primary-dark);
+      font-weight: 500;
+      font-size: 0.72rem;
+      padding: 0.35em 0.75em;
+      border-radius: 999px;
+      margin: 0 0.25rem 0.5rem 0;
+      display: inline-block;
+    }
+
+    .btn-project {
+      background: var(--primary);
+      border: none;
+      color: #fff;
+      font-weight: 500;
+      border-radius: 12px;
+      padding: 0.6rem 1rem;
+      transition: background 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: center;
+      width: 100%;
+      margin-top: 0.75rem;
+    }
+
+    .btn-project:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: #94a3b8;
+      padding: 2rem 0;
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-folder2-open me-2"></i>Mi Portafolio
+      </a>
+      <button
+        class="navbar-toggler border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu"
+        aria-controls="navMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#proyectos">Proyectos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <span class="badge rounded-pill text-bg-light mb-3 px-3 py-2">
+        <i class="bi bi-stars me-1 text-warning"></i> Muestra de Proyectos
+      </span>
+      <h1>Portafolio de Proyectos</h1>
+      <p>
+Explora mi portafolio de proyectos de analítica de datos y programación, 
+con soluciones enfocadas en la exploración, el diagnóstico 
+y el desarrollo de aplicaciones. Cada proyecto incluye acceso a su repositorio, 
+documentación en PDF y recursos complementarios.
+      </p>
+    </div>
+  </section>
+
+  <!-- Grid de Proyectos -->
+  <section id="proyectos" class="pb-5">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- Proyecto 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="project-card">
+            <div class="project-icon icon-1">
+              <i class="bi bi-graph-up-arrow"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Análisis de Datos</h5>
+              <p class="card-text text-justify">
+                Desarrollo de proyectos de analítica de datos enfocados en la exploración, 
+                limpieza y diagnóstico de información, utilizando Python y librerías como 
+                Pandas, NumPy, Matplotlib y Seaborn. Aplicación de análisis exploratorio de datos (EDA), 
+                estadística descriptiva y visualización para identificar patrones, tendencias, 
+                anomalías y oportunidades de mejora que faciliten la toma de decisiones basada en datos.
+              </p>
+              <div>
+                <!--<span class="badge-tech">Python</span>
+                <span class="badge-tech">Pandas</span>
+                <span class="badge-tech">Plotly</span>-->
+              </div>
+              <!-- ⬇️ REEMPLAZA ESTE ENLACE POR TU REPOSITORIO ⬇️ -->
+              <a
+                href="https://github.com/tu-usuario/tu-repositorio"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-project"
+              >
+                <i class="bi bi-box-arrow-up-right"></i> Ver Repositorio
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="project-card">
+            <div class="project-icon icon-2">
+              <i class="bi bi-phone"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Programación en Python y Diseño Web </h5>
+              <p class="card-text text-justify">
+                Desarrollo de proyectos de software a nivel de exploración y diagnóstico, 
+                utilizando Python y librerías como Pandas, NumPy y Matplotlib, 
+                junto con tecnologías web como HTML, CSS y Bootstrap para la creación 
+                de interfaces adaptativas. Enfoque en el análisis de requerimientos, 
+                la estructuración de soluciones y el diseño de aplicaciones web funcionales 
+                y responsivas.
+              </p>
+              <div>
+                <!--<span class="badge-tech">Flutter</span>
+                <span class="badge-tech">Firebase</span>
+                <span class="badge-tech">Dart</span>-->
+              </div>
+              <!-- ⬇️ REEMPLAZA ESTE ENLACE POR TU REPOSITORIO ⬇️ -->
+              <a
+                href="https://github.com/tu-usuario/tu-repositorio"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-project"
+              >
+                <i class="bi bi-box-arrow-up-right"></i> Ver Repositorio
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 3 -->
+       <!-- <div class="col-md-6 col-lg-4">
+          <div class="project-card">
+            <div class="project-icon icon-3">
+              <i class="bi bi-cart-check"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">E-commerce</h5>
+              <p class="card-text">
+                Tienda en línea con carrito de compras y manual de usuario
+                en formato PDF.
+              </p>
+              <div>
+                <span class="badge-tech">React</span>
+                <span class="badge-tech">Node.js</span>
+                <span class="badge-tech">MongoDB</span>
+              </div>
+              <!-- ⬇️ REEMPLAZA ESTE ENLACE POR TU REPOSITORIO ⬇️ -->
+              <!--<a
+                href="https://github.com/tu-usuario/tu-repositorio"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-project"
+              >
+                <i class="bi bi-box-arrow-up-right"></i> Ver Repositorio
+              </a>
+            </div>
+          </div>
+        </div>-->
+
+        <!-- Proyecto 4 -->
+       <!-- <div class="col-md-6 col-lg-4">
+          <div class="project-card">
+            <div class="project-icon icon-4">
+              <i class="bi bi-cpu"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">API REST</h5>
+              <p class="card-text">
+                API documentada con Swagger y guía de endpoints en PDF
+                descargable.
+              </p>
+              <div>
+                <span class="badge-tech">FastAPI</span>
+                <span class="badge-tech">PostgreSQL</span>
+                <span class="badge-tech">Docker</span>
+              </div>
+              <!-- ⬇️ REEMPLAZA ESTE ENLACE POR TU REPOSITORIO ⬇️ -->
+             <!-- <a
+                href="https://github.com/tu-usuario/tu-repositorio"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-project"
+              >
+                <i class="bi bi-box-arrow-up-right"></i> Ver Repositorio
+              </a>
+            </div>
+          </div>
+        </div>-->
+
+        <!-- Proyecto 5 -->
+        <!--<div class="col-md-6 col-lg-4">
+          <div class="project-card">
+            <div class="project-icon icon-5">
+              <i class="bi bi-palette"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Diseño UI/UX</h5>
+              <p class="card-text">
+                Prototipos interactivos con guía de estilo y wireframes
+                en PDF.
+              </p>
+              <div>
+                <span class="badge-tech">Figma</span>
+                <span class="badge-tech">Adobe XD</span>
+                <span class="badge-tech">Sketch</span>
+              </div>
+              <!-- ⬇️ REEMPLAZA ESTE ENLACE POR TU REPOSITORIO ⬇️ -->
+              <!--<a
+                href="https://github.com/tu-usuario/tu-repositorio"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-project"
+              >
+                <i class="bi bi-box-arrow-up-right"></i> Ver Repositorio
+              </a>
+            </div>
+          </div>
+        </div>-->
+
+        <!-- Proyecto 6 -->
+        <!--<div class="col-md-6 col-lg-4">
+          <div class="project-card">
+            <div class="project-icon icon-6">
+              <i class="bi bi-shield-lock"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Ciberseguridad</h5>
+              <p class="card-text">
+                Herramienta de auditoría con reporte de vulnerabilidades
+                en PDF.
+              </p>
+              <div>
+                <span class="badge-tech">Python</span>
+                <span class="badge-tech">Linux</span>
+                <span class="badge-tech">Nmap</span>
+              </div>
+              <!-- ⬇️ REEMPLAZA ESTE ENLACE POR TU REPOSITORIO ⬇️ -->
+             <!-- <a
+                href="https://github.com/tu-usuario/tu-repositorio"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-project"
+              >
+                <i class="bi bi-box-arrow-up-right"></i> Ver Repositorio
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>-->
+  </section>
+
+  <!-- Footer -->
+  <footer id="contacto">
+    <div class="container text-center">
+      <p class="mb-1">
+        <i class="bi bi-envelope me-1"></i>
+        <a href="mailto:tu-correo@ejemplo.com">andrestf21@gmail.com</a>
+      </p>
+      <p class="mb-0 small">
+        &copy; <span id="year"></span> Mi Portafolio. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS desde CDN -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+
+  <script>
+    // Año dinámico en el footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
